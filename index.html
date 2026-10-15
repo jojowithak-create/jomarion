@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name - Portfolio</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Newsreader:opsz,ital,wght@6..72,0,400;6..72,0,500;6..72,1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-color: #f3f5f9;
+      --card-bg: #ffffff;
+      --text-main: #101a2e;
+      --text-muted: #4a5568;
+      --accent-blue: #2340ff;
+      --accent-yellow: #ffd84a;
+      --border-color: #e2e8f0;
+      --card-radius: 14px;
+      --dark-card-bg: #101a2e;
+      --dark-card-text: #ffffff;
+      --translucent-panel: rgba(255, 255, 255, 0.08);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: #0b1120;
+        --card-bg: #152035;
+        --text-main: #f1f5f9;
+        --text-muted: #94a3b8;
+        --border-color: #24334d;
+        --accent-blue: #536dff;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: 'Newsreader', serif;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+
+    h1, h2, h3, h4, .btn, .tag {
+      font-family: 'Bricolage Grotesque', sans-serif;
+    }
+
+    a {
+      color: var(--accent-blue);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--accent-blue);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* HEADER */
+    header {
+      margin-bottom: 3rem;
+    }
+
+    .name-heading {
+      font-size: 3rem;
+      font-weight: 800;
+      display: inline-block;
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+
+    .highlight {
+      background: linear-gradient(180deg, transparent 60%, var(--accent-yellow) 60%);
+      padding: 0 4px;
+    }
+
+    .intro-text {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .pill-links {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.5rem 1.25rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+      text-decoration: none;
+    }
+
+    /* CARDS */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--card-radius);
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .card h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    /* LAYOUT GRID */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 1.5rem;
+    }
+
+    .left-col, .right-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .date-blue {
+      color: var(--accent-blue);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .dots {
+      color: var(--accent-blue);
+      letter-spacing: 2px;
+    }
+
+    .dots-empty {
+      color: var(--border-color);
+    }
+
+    /* NEWSLETTER STANDOUT CARD */
+    .newsletter-card {
+      background-color: var(--dark-card-bg);
+      color: var(--dark-card-text);
+      border: none;
+    }
+
+    .newsletter-card h2 {
+      color: #ffffff;
+      font-size: 1.75rem;
+    }
+
+    .newsletter-card p {
+      color: #cbd5e1;
+    }
+
+    .featured-article {
+      background: var(--translucent-panel);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin: 1.25rem 0;
+    }
+
+    .featured-article h3 {
+      font-size: 1.15rem;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+
+    .featured-article p {
+      font-size: 0.95rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .featured-article a {
+      color: #93c5fd;
+      font-weight: 600;
+    }
+
+    .iframe-wrapper {
+      background: #ffffff;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 1rem;
+    }
+
+    iframe {
+      width: 100%;
+      height: 300px;
+      border: 0;
+    }
+
+    /* BOTTOM ROW */
+    .extra-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    /* MOBILE RESPONSIVE */
+    @media (max-width: 768px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+
+      /* Newsletter card top on mobile */
+      .right-col {
+        order: -1;
+      }
+
+      .name-heading {
+        font-size: 2.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- HEADER -->
+    <header>
+      <h1 class="name-heading"><span class="highlight">[Your Name]</span></h1>
+      <p class="intro-text">[One-line introduction about what you do, build, or research.]</p>
+      <nav class="pill-links">
+        <a href="mailto:your.email@example.com" class="btn">Email</a>
+        <a href="https://linkedin.com/in/yourprofile" target="_blank" class="btn">LinkedIn</a>
+        <a href="#newsletter" class="btn">Newsletter</a>
+      </nav>
+    </header>
+
+    <!-- MAIN LAYOUT -->
+    <main class="main-grid">
+      
+      <!-- LEFT COLUMN -->
+      <section class="left-col">
+        
+        <!-- School History -->
+        <div class="card">
+          <h2>School History</h2>
+          <div style="margin-bottom: 1.25rem;">
+            <strong>[University / School Name]</strong> 
+            <span class="date-blue">• [2020 – 2024]</span>
+            <p style="font-size: 0.95rem; color: var(--text-muted);">[Short description or major field of study.]</p>
+          </div>
+          <div>
+            <strong>[Secondary School / College]</strong> 
+            <span class="date-blue">• [2018 – 2020]</span>
+            <p style="font-size: 0.95rem; color: var(--text-muted);">[Short description or focus area.]</p>
+          </div>
+        </div>
+
+        <!-- Languages Spoken -->
+        <div class="card">
+          <h2>Languages Spoken</h2>
+          <p style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+            <span>English (Native)</span>
+            <span><span class="dots">●●●●●</span></span>
+          </p>
+          <p style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+            <span>Spanish (Fluent)</span>
+            <span><span class="dots">●●●●</span><span class="dots-empty">○</span></span>
+          </p>
+          <p style="display: flex; justify-content: space-between;">
+            <span>French (Basic)</span>
+            <span><span class="dots">●●</span><span class="dots-empty">○○○</span></span>
+          </p>
+        </div>
+
+        <!-- Certifications -->
+        <div class="card">
+          <h2>Certifications</h2>
+          <div style="margin-bottom: 1rem;">
+            <strong>[Certification Name]</strong><br />
+            <span style="font-size: 0.9rem; color: var(--text-muted);">Issued [Month Year] by [Issuer Name]</span><br />
+            <a href="#" target="_blank" style="font-size: 0.9rem;">Verify credential →</a>
+          </div>
+          <div>
+            <strong>[Another Certification]</strong><br />
+            <span style="font-size: 0.9rem; color: var(--text-muted);">Issued [Month Year] by [Issuer Name]</span><br />
+            <a href="#" target="_blank" style="font-size: 0.9rem;">Verify credential →</a>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- RIGHT COLUMN -->
+      <section class="right-col">
+        
+        <!-- NEWSLETTER CARD (Standout) -->
+        <div class="card newsletter-card" id="newsletter">
+          <h2>From my newsletter</h2>
+          <p style="font-size: 0.95rem;">Read my latest article here, or subscribe to get the next one in your inbox.</p>
+          
+          <div class="featured-article">
+            <h3>[Featured Article Title Goes Here]</h3>
+            <p>[A short two-line summary describing the key topic covered in this specific article.]</p>
+            <a href="https://yourname.beehiiv.com/p/your-post-slug" target="_blank">Read the full article →</a>
+          </div>
+
+          <div class="iframe-wrapper">
+            <iframe src="https://embeds.beehiiv.com/YOUR-EMBED-ID" title="Subscribe to Newsletter"></iframe>
+            <!-- Fallback link if embed fails or ID isn't set:
+            <p style="padding: 1rem; text-align: center;"><a href="https://yourname.beehiiv.com" target="_blank">Subscribe on my Beehiiv page →</a></p>
+            -->
+          </div>
+        </div>
+
+        <!-- Webinars Attended -->
+        <div class="card">
+          <h2>Webinars Attended</h2>
+          <div style="margin-bottom: 1.25rem;">
+            <strong>[Webinar Topic or Title]</strong><br />
+            <span class="date-blue">[Date]</span> • <span style="font-size: 0.9rem; color: var(--text-muted);">Hosted by [Host/Company]</span>
+            <p style="font-size: 0.95rem; margin-top: 0.25rem;"><em>Takeaway:</em> [One-line key takeaway learned from attending.]</p>
+          </div>
+          <div>
+            <strong>[Another Webinar Title]</strong><br />
+            <span class="date-blue">[Date]</span> • <span style="font-size: 0.9rem; color: var(--text-muted);">Hosted by [Host/Company]</span>
+            <p style="font-size: 0.95rem; margin-top: 0.25rem;"><em>Takeaway:</em> [One-line key takeaway learned from attending.]</p>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- EXTRA SECTIONS -->
+    <section class="extra-grid">
+      <div class="card">
+        <h2>Experience</h2>
+        <p><strong>[Role Title]</strong> @ [Company]</p>
+        <p class="date-blue" style="margin-bottom: 0.5rem;">[2022 – Present]</p>
+        <p style="font-size: 0.95rem; color: var(--text-muted);">[Brief summary of responsibilities and key achievements.]</p>
+      </div>
+
+      <div class="card">
+        <h2>Projects</h2>
+        <p><strong>[Project Name]</strong></p>
+        <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.5rem;">[Short description of what you built and key technologies used.]</p>
+        <a href="#" target="_blank" style="font-size: 0.9rem;">View project →</a>
+      </div>
+
+      <div class="card">
+        <h2>Volunteering</h2>
+        <p><strong>[Volunteer Role]</strong></p>
+        <p class="date-blue" style="margin-bottom: 0.5rem;">[Organization Name]</p>
+        <p style="font-size: 0.95rem; color: var(--text-muted);">[Short description of volunteer contributions.]</p>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>© <span id="year"></span> Your Name</p>
+    </footer>
+
+  </div>
+
+  <script>
+    // Automatically set current year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
